@@ -1,0 +1,24 @@
+package com.myProject.eventPlatform.enumuration.responseModel;
+
+public enum ResponseMessageEnum {
+
+    LISTING_SUCCESSFULLY_DONE,
+    DATA_NOT_FOUND,
+    CREATED_SUCCESSFULLY,
+    UPDATED_SUCCESSFULLY_DONE,
+
+    DELETED_SUCCESSFULLY_DONE,
+    CONNECTION_ACCEPTED,
+    CONNECTION_REJECT,
+    CONNECTION_ACCEPT_ERROR,
+    CONNECTION_ALREADY_ACCEPT;
+
+
+
+
+
+
+
+
+
+}
