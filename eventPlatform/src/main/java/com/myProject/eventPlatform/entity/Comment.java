@@ -22,7 +22,7 @@ public class Comment {
     @JoinColumn(name = "community_id", nullable = false)
     private Community community;
 
-    @ManyToOne // bunu yapmamın sebebi birden cok yorum tek etkinliğe atılması için
+    @ManyToOne // tek etkinliğin çok yorumu olmalı
     @JoinColumn(name = "event_id")
     private Event event;
 

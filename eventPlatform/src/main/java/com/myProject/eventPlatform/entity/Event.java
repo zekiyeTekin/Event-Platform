@@ -21,7 +21,7 @@ public class Event {
     private LocalDate date;
     private String details;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
