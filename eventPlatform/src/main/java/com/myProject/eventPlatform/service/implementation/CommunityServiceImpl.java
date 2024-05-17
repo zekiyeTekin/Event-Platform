@@ -93,6 +93,18 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
 
+    public ResponseModel<CommunityDto> listById(Integer id){
+        try{
+            Community communityList = communityRepository.findById(id).get();
+                return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.LISTING_SUCCESSFULLY_DONE, communityMapper.toDto(communityList));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.DATA_NOT_FOUND, null);
+
+    }
+
+
 
 }
 

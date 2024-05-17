@@ -18,6 +18,7 @@ public class Category {
     private Integer id;
 
     //enum olarak tuttum
+    @Enumerated(EnumType.STRING)
     private TypeEnum type;
 
     private Boolean isActive;

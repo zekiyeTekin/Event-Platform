@@ -54,6 +54,11 @@ public class CommunityController {
         return  communityService.communitiesByCategoryType(type);
     }
 
+    /*    @PostMapping("/add/byId")
+    public ResponseModel<CommunityDto> listById(@RequestBody CommunityDto communityDto){
+        return communityService.listById(communityDto);
+    }*/
+
 
 
 
