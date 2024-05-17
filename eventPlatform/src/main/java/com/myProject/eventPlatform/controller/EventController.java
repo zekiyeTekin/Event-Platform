@@ -1,7 +1,9 @@
 package com.myProject.eventPlatform.controller;
 
 import com.myProject.eventPlatform.common.ResponseModel;
+import com.myProject.eventPlatform.dto.EventDto;
 import com.myProject.eventPlatform.entity.Event;
+import com.myProject.eventPlatform.filter.EventFilter;
 import com.myProject.eventPlatform.service.EventService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,17 +19,17 @@ public class EventController {
     }
 
     @GetMapping("/getAll")
-    public ResponseModel<List<Event>> getAll(){
+    public ResponseModel<List<EventDto>> getAll(){
         return eventService.getAll();
     }
 
     @PostMapping("/create")
-    public ResponseModel<Event> create(@RequestBody Event event){
+    public ResponseModel<EventDto> create(@RequestBody Event event){
         return eventService.create(event);
     }
 
     @PutMapping("/update")
-    public ResponseModel<Event> updateTitle(@RequestBody Event event){
+    public ResponseModel<EventDto> updateTitle(@RequestBody Event event){
         return eventService.updateTitle(event);
     }
 
@@ -41,6 +43,20 @@ public class EventController {
         return eventService.listEventByCategory(event);
     }
 
+    @PostMapping("/filter/by/date")
+    public ResponseModel<List<Event>> searchByDateWithFilter(@RequestBody EventFilter eventFilter){
+        return eventService.searchByDateWithFilter(eventFilter);
+    }
+
+    @PostMapping("/filter/by/category")
+    public ResponseModel<List<Event>> searchByCategoryTypeWithFilter(@RequestBody EventFilter eventFilter){
+        return eventService.searchByCategoryTypeWithFilter(eventFilter);
+    }
+
+    @PostMapping("/filter/by/address")
+    public ResponseModel<List<Event>> searchByAddressWithFilter(@RequestBody EventFilter eventFilter){
+        return eventService.searchByAddressWithFilter(eventFilter);
+    }
 
 
 

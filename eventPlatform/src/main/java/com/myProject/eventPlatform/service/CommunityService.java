@@ -21,4 +21,6 @@ public interface CommunityService {
 
     ResponseModel<List<CommunityDto>> communitiesByCategoryType(TypeEnum type);
 
+    ResponseModel<CommunityDto> listById(Integer id);
+
 }

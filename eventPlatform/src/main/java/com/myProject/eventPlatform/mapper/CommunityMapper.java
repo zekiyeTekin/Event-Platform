@@ -25,9 +25,10 @@ public class CommunityMapper {
                 .category(categoryMapper.toDto(community.getCategory()))
                 .isActive(community.getIsActive())
                 .build();
-
-
 }
+
+
+
 
     public List<CommunityDto> convertList(List<Community> communityList){
         List<CommunityDto> communityDtoList = new ArrayList<>();
