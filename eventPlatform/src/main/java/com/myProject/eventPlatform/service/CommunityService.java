@@ -2,7 +2,6 @@ package com.myProject.eventPlatform.service;
 
 import com.myProject.eventPlatform.common.ResponseModel;
 import com.myProject.eventPlatform.dto.CommunityDto;
-import com.myProject.eventPlatform.entity.Community;
 import com.myProject.eventPlatform.enumuration.category.TypeEnum;
 
 import java.util.List;
@@ -21,6 +20,5 @@ public interface CommunityService {
 
     ResponseModel<List<CommunityDto>> communitiesByCategoryType(TypeEnum type);
 
-    ResponseModel<CommunityDto> listById(Integer id);
 
 }

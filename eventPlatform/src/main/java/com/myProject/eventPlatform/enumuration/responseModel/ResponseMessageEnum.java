@@ -3,6 +3,7 @@ package com.myProject.eventPlatform.enumuration.responseModel;
 public enum ResponseMessageEnum {
 
     LISTING_SUCCESSFULLY_DONE,
+    SUCCESSFULLY_DONE,
     DATA_NOT_FOUND,
     CREATED_SUCCESSFULLY,
     SEARCHED_SUCCESSFULLY,

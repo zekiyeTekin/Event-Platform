@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CommunityServiceImpl implements CommunityService {
@@ -89,20 +88,11 @@ public class CommunityServiceImpl implements CommunityService {
 
         }
         return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.LISTING_SUCCESSFULLY_DONE, communityMapper.convertList(communityList));
-
     }
 
 
-    public ResponseModel<CommunityDto> listById(Integer id){
-        try{
-            Community communityList = communityRepository.findById(id).get();
-                return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.LISTING_SUCCESSFULLY_DONE, communityMapper.toDto(communityList));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.DATA_NOT_FOUND, null);
 
-    }
+
 
 
 

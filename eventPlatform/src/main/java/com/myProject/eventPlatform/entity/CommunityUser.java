@@ -17,7 +17,7 @@ public class CommunityUser {
     @JoinColumn(name = "community_id", referencedColumnName = "id")
     private Community community;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 

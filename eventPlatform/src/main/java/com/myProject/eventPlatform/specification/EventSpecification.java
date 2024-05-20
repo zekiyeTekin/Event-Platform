@@ -50,7 +50,17 @@ public class EventSpecification {
             }
             return builder.and(predicateList.toArray(new Predicate[0]));
         };
+    }
 
+    public static Specification<Event> searchByCommunity(EventFilter eventFilter){
+        return (Root <Event> root, CriteriaQuery <?> query, CriteriaBuilder builder) -> {
+
+            List<Predicate> predicateList = new ArrayList<>();
+            if(eventFilter.getCommunity() != null && !eventFilter.getCommunity().isEmpty()){
+                predicateList.add(builder.like(builder.lower(root.get("community").get("title")), "%" + eventFilter.getCommunity().toLowerCase() + "%" ));
+            }
+            return builder.and(predicateList.toArray(predicateList.toArray(new Predicate[0])));
+        };
     }
 
 

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class EventFilter {
 
     private TypeEnum category;
-    private String communityName;
+    private String community;
     private String address;
     private String title; //yap
 
