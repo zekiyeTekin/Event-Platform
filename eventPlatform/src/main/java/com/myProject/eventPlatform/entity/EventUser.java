@@ -18,11 +18,11 @@ public class EventUser {
     @JoinColumn(name = "role_id" , referencedColumnName = "id")
     private Role role;
 
-    @ManyToOne // bir etkinlikte birden fazla katılımcı olabilir
+    @ManyToOne //Bir etkinlikte birden fazla katılımcı olabilir
     @JoinColumn(name = "event_id", referencedColumnName = "id")
     private Event event;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 }

@@ -1,9 +1,10 @@
 package com.myProject.eventPlatform.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.myProject.eventPlatform.entity.Community;
+import com.myProject.eventPlatform.entity.User;
+import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -11,20 +12,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class EventDto {
+public class CommunityUserDto {
+
 
     private Integer id;
 
-    private String title;
-    private String address;
-    private LocalDate date;
-    private String details;
-    private Boolean isActive;
-
-    private CategoryDto category;
-
-
     private CommunityDto community;
 
+    private UserDto user;
 
+    private Boolean isActive;
 }

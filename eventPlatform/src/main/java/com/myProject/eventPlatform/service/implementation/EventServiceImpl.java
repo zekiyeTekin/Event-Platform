@@ -6,10 +6,8 @@ import com.myProject.eventPlatform.entity.Event;
 import com.myProject.eventPlatform.enumuration.responseModel.ResponseMessageEnum;
 import com.myProject.eventPlatform.enumuration.responseModel.ResponseStatusEnum;
 import com.myProject.eventPlatform.filter.EventFilter;
-import com.myProject.eventPlatform.mapper.CommunityMapper;
 import com.myProject.eventPlatform.mapper.EventMapper;
 import com.myProject.eventPlatform.repository.EventRepository;
-import com.myProject.eventPlatform.service.CommunityService;
 import com.myProject.eventPlatform.service.EventService;
 import com.myProject.eventPlatform.specification.EventSpecification;
 import jakarta.persistence.EntityManager;
@@ -68,45 +66,52 @@ public class EventServiceImpl implements EventService {
         return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.UPDATED_ERROR, null);
     }
 
-    public ResponseModel<Event> delete(Event event){
+    public ResponseModel<EventDto> delete(Event event){
         Event deletedEvent = eventRepository.findById(event.getId()).orElse(null);
         if(deletedEvent != null){
             eventRepository.delete(deletedEvent);
-            return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.DELETED_SUCCESSFULLY_DONE, deletedEvent);
+            return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.DELETED_SUCCESSFULLY_DONE, eventMapper.toDto(deletedEvent));
         }
         return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.DELETED_ERROR, null);
     }
 
 
-    public ResponseModel<List<Event>> listEventByCategory(Event event){
+    public ResponseModel<List<EventDto>> listEventByCategory(Event event){
 
         List<Event> eventList = eventRepository.findEventsByCategoryId(event.getCategory().getId());
         if(eventList.isEmpty()){
             return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.DATA_NOT_FOUND, null);
         }
-        return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.LISTING_SUCCESSFULLY_DONE,eventList);
+        return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.LISTING_SUCCESSFULLY_DONE, eventMapper.convertList(eventList));
     }
 
-    public ResponseModel<List<Event>> searchByDateWithFilter(EventFilter eventFilter){
+    public ResponseModel<List<EventDto>> searchByDateWithFilter(EventFilter eventFilter){
         List<Event> eventFilterList = eventRepository.findAll(EventSpecification.searchByDate(eventFilter));
         if (!eventFilterList.isEmpty()){
-            return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.SEARCHED_SUCCESSFULLY, eventFilterList);
+            return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.SEARCHED_SUCCESSFULLY, eventMapper.convertList(eventFilterList));
         }
         return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.SEARCHED_ERROR, null);
     }
 
-    public ResponseModel<List<Event>> searchByCategoryTypeWithFilter(EventFilter eventFilter) {
+    public ResponseModel<List<EventDto>> searchByCategoryTypeWithFilter(EventFilter eventFilter) {
         List<Event> eventFilterList =eventRepository.findAll(EventSpecification.searchByCategoryName(eventFilter));
         if (!eventFilterList.isEmpty()){
-            return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.SEARCHED_SUCCESSFULLY, eventFilterList);
+            return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.SEARCHED_SUCCESSFULLY, eventMapper.convertList(eventFilterList));
+        }
+        return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.SEARCHED_ERROR, null);
+    }
+    public ResponseModel<List<EventDto>> searchByAddressWithFilter(EventFilter eventFilter){
+        List<Event> eventFilterList = eventRepository.findAll(EventSpecification.searchByAddress(eventFilter));
+        if (!eventFilterList.isEmpty()){
+            return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.SEARCHED_SUCCESSFULLY, eventMapper.convertList(eventFilterList));
         }
         return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.SEARCHED_ERROR, null);
     }
 
-    public ResponseModel<List<Event>> searchByAddressWithFilter(EventFilter eventFilter){
-        List<Event> eventFilterList = eventRepository.findAll(EventSpecification.searchByAddress(eventFilter));
+    public ResponseModel<List<EventDto>> searchByCommunityWithFilter(EventFilter eventFilter){
+        List<Event> eventFilterList = eventRepository.findAll(EventSpecification.searchByCommunity(eventFilter));
         if (!eventFilterList.isEmpty()){
-            return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.SEARCHED_SUCCESSFULLY, eventFilterList);
+            return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.SEARCHED_SUCCESSFULLY, eventMapper.convertList(eventFilterList));
         }
         return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.SEARCHED_ERROR, null);
     }

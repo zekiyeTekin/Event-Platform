@@ -14,14 +14,18 @@ public interface EventService {
     ResponseModel<EventDto> create(Event event);
     ResponseModel<EventDto> updateTitle(Event event);
 
-    ResponseModel<Event> delete(Event event);
+    ResponseModel<EventDto> delete(Event event);
 
-    ResponseModel<List<Event>> listEventByCategory(Event event);
+    ResponseModel<List<EventDto>> listEventByCategory(Event event);
 
-    ResponseModel<List<Event>> searchByDateWithFilter(EventFilter eventFilter);
+    ResponseModel<List<EventDto>> searchByDateWithFilter(EventFilter eventFilter);
 
-    ResponseModel<List<Event>> searchByCategoryTypeWithFilter(EventFilter eventFilter);
+    ResponseModel<List<EventDto>> searchByCategoryTypeWithFilter(EventFilter eventFilter);
 
-    ResponseModel<List<Event>> searchByAddressWithFilter(EventFilter eventFilter);
+    ResponseModel<List<EventDto>> searchByAddressWithFilter(EventFilter eventFilter);
+
+    ResponseModel<List<EventDto>> searchByCommunityWithFilter(EventFilter eventFilter);
+
+
 
 }

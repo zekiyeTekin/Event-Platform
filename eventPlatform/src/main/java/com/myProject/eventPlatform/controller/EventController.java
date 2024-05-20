@@ -34,30 +34,34 @@ public class EventController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseModel<Event> delete(@RequestBody Event event){
+    public ResponseModel<EventDto> delete(@RequestBody Event event){
         return eventService.delete(event);
     }
 
     @GetMapping("/list/by/category")
-    public ResponseModel<List<Event>> listEventByCategory(@RequestBody Event event){
+    public ResponseModel<List<EventDto>> listEventByCategory(@RequestBody Event event){
         return eventService.listEventByCategory(event);
     }
 
     @PostMapping("/filter/by/date")
-    public ResponseModel<List<Event>> searchByDateWithFilter(@RequestBody EventFilter eventFilter){
+    public ResponseModel<List<EventDto>> searchByDateWithFilter(@RequestBody EventFilter eventFilter){
         return eventService.searchByDateWithFilter(eventFilter);
     }
 
     @PostMapping("/filter/by/category")
-    public ResponseModel<List<Event>> searchByCategoryTypeWithFilter(@RequestBody EventFilter eventFilter){
+    public ResponseModel<List<EventDto>> searchByCategoryTypeWithFilter(@RequestBody EventFilter eventFilter){
         return eventService.searchByCategoryTypeWithFilter(eventFilter);
     }
 
     @PostMapping("/filter/by/address")
-    public ResponseModel<List<Event>> searchByAddressWithFilter(@RequestBody EventFilter eventFilter){
+    public ResponseModel<List<EventDto>> searchByAddressWithFilter(@RequestBody EventFilter eventFilter){
         return eventService.searchByAddressWithFilter(eventFilter);
     }
 
+    @PostMapping("/filter/by/community")
+    public ResponseModel<List<EventDto>> searchByCommunityWithFilter(@RequestBody EventFilter eventFilter){
+        return eventService.searchByCommunityWithFilter(eventFilter);
+    }
 
 
 }

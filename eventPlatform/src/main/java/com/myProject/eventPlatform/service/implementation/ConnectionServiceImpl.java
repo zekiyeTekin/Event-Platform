@@ -25,9 +25,6 @@ public class ConnectionServiceImpl implements ConnectionService {
         this.connectionMapper = connectionMapper;
     }
 
-
-
-
     public ResponseModel<List<ConnectionDto>> getAll(){
         List<Connection> connectionList = connectionRepository.findAll();
         try{
