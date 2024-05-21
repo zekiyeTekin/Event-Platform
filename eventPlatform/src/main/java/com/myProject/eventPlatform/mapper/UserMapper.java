@@ -1,6 +1,7 @@
 package com.myProject.eventPlatform.mapper;
 
 import com.myProject.eventPlatform.dto.UserDto;
+import com.myProject.eventPlatform.dto.forCommentDto.UserDtoForComment;
 import com.myProject.eventPlatform.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -45,6 +46,13 @@ public class UserMapper {
         user.setIsActive(userDto.getIsActive());
         user.setAge(userDto.getAge());
         return user;
+    }
+
+    public UserDtoForComment toDtoForComment(User user){
+        return UserDtoForComment.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .build();
     }
 
 

@@ -3,6 +3,7 @@ package com.myProject.eventPlatform.enumuration.responseModel;
 public enum ResponseMessageEnum {
 
     LISTING_SUCCESSFULLY_DONE,
+    BAD_REQUEST,
     SUCCESSFULLY_DONE,
     DATA_NOT_FOUND,
     CREATED_SUCCESSFULLY,
@@ -16,14 +17,7 @@ public enum ResponseMessageEnum {
     CONNECTION_ACCEPTED,
     CONNECTION_REJECT,
     CONNECTION_ACCEPT_ERROR,
-    CONNECTION_ALREADY_ACCEPT;
-
-
-
-
-
-
-
+    CONNECTION_ALREADY_ACCEPT
 
 
 }

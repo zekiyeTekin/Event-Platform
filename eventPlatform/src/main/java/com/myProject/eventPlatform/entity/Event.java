@@ -1,6 +1,7 @@
 package com.myProject.eventPlatform.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,7 +26,7 @@ public class Event {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
-
+    @JsonIgnore //sonsuz döngüye giriyordu.
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
