@@ -1,7 +1,7 @@
 package com.myProject.eventPlatform.mapper;
 
 import com.myProject.eventPlatform.dto.CommunityDto;
-import com.myProject.eventPlatform.dto.UserDto;
+import com.myProject.eventPlatform.dto.forCommentDto.CommunityDtoForComment;
 import com.myProject.eventPlatform.entity.Community;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,6 @@ import java.util.List;
 
 @Component
 public class CommunityMapper {
-
 
     @Autowired
     private CategoryMapper categoryMapper;
@@ -25,10 +24,7 @@ public class CommunityMapper {
                 .category(categoryMapper.toDto(community.getCategory()))
                 .isActive(community.getIsActive())
                 .build();
-}
-
-
-
+    }
 
     public List<CommunityDto> convertList(List<Community> communityList){
         List<CommunityDto> communityDtoList = new ArrayList<>();
@@ -49,8 +45,16 @@ public class CommunityMapper {
         community.setDetails(communityDto.getDetails());
         community.setTitle(communityDto.getTitle());
         return community;
-
     }
+
+    public CommunityDtoForComment toDtoForComment(Community community){
+        return CommunityDtoForComment.builder()
+                .id(community.getId())
+                .title(community.getTitle())
+                .build();
+    }
+
+
 
 
 }

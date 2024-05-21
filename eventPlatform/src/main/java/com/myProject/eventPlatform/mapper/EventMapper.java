@@ -1,6 +1,7 @@
 package com.myProject.eventPlatform.mapper;
 
 import com.myProject.eventPlatform.dto.EventDto;
+import com.myProject.eventPlatform.dto.forCommentDto.EventDtoForComment;
 import com.myProject.eventPlatform.entity.Event;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +41,13 @@ public class EventMapper {
     }
 
 
+
+    public EventDtoForComment toDtoForComment(Event event){
+        return EventDtoForComment.builder()
+                .id(event.getId())
+                .title(event.getTitle())
+                .build();
+    }
 
 
 }
