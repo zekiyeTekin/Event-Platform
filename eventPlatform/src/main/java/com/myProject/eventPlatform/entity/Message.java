@@ -2,7 +2,6 @@ package com.myProject.eventPlatform.entity;
 
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -17,10 +16,17 @@ public class Message {
     private Integer id;
 
     private String content;
-    private String message_sender;
-    private String message_receive;
     private LocalDate date;
     private Boolean isDeleted;
+
+    @ManyToOne
+    @JoinColumn(name = "sender_user_id" ,referencedColumnName = "id")
+    private User message_sender;
+
+    @ManyToOne
+    @JoinColumn(name = "receiver_user_id" ,referencedColumnName = "id")
+    private User message_receiver;
+
 
 
 }

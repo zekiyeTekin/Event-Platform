@@ -3,15 +3,15 @@ package com.myProject.eventPlatform.repository;
 import com.myProject.eventPlatform.entity.Connection;
 import com.myProject.eventPlatform.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface ConnectionRepository extends JpaRepository<Connection, Integer> {
+public interface ConnectionRepository extends JpaRepository<Connection, Integer>, JpaSpecificationExecutor<Connection> {
 
 
     List<Connection> findConnectionsByReceiver(User receiver);
