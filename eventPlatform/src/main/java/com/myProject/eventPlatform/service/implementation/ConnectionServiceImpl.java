@@ -5,10 +5,11 @@ import com.myProject.eventPlatform.dto.ConnectionDto;
 import com.myProject.eventPlatform.entity.Connection;
 import com.myProject.eventPlatform.enumuration.responseModel.ResponseMessageEnum;
 import com.myProject.eventPlatform.enumuration.responseModel.ResponseStatusEnum;
+import com.myProject.eventPlatform.filter.ConnectionFilter;
 import com.myProject.eventPlatform.mapper.ConnectionMapper;
-import com.myProject.eventPlatform.mapper.UserMapper;
 import com.myProject.eventPlatform.repository.ConnectionRepository;
 import com.myProject.eventPlatform.service.ConnectionService;
+import com.myProject.eventPlatform.specification.ConnectionSpecification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -100,8 +101,23 @@ public class ConnectionServiceImpl implements ConnectionService {
     public ResponseModel<List<ConnectionDto>> getUserConnection(Integer receiverId){
         List<Connection> userConnections = connectionRepository.findConnectionsByReceiverId(receiverId);
         return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.LISTING_SUCCESSFULLY_DONE, connectionMapper.convertList(userConnections));
-
     }
+
+
+   public ResponseModel<List<ConnectionDto>> listConnectionWhenStatusFalseWithFilter(ConnectionFilter connectionFilter){
+
+       List<Connection> connectionFilterList = connectionRepository.findAll(ConnectionSpecification.searchByUserRequest(connectionFilter));
+
+       List<Connection> statusFalseConnection = connectionFilterList.stream()
+               .filter(receiverConnection -> receiverConnection.getStatus() != null && !receiverConnection.getStatus())
+               .collect(Collectors.toList());
+
+       if (!statusFalseConnection.isEmpty()){
+           return new ResponseModel<>(ResponseStatusEnum.OK.getCode(), ResponseStatusEnum.OK.getMessage(), true, ResponseMessageEnum.SEARCHED_SUCCESSFULLY, connectionMapper.convertList(statusFalseConnection));
+       }
+       return new ResponseModel<>(ResponseStatusEnum.NOT_FOUND.getCode(), ResponseStatusEnum.NOT_FOUND.getMessage(), false, ResponseMessageEnum.SEARCHED_ERROR, null);
+
+   }
 
 
 

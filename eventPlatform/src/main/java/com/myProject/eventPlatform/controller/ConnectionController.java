@@ -4,6 +4,7 @@ import com.myProject.eventPlatform.common.ResponseModel;
 import com.myProject.eventPlatform.dto.ConnectionDto;
 import com.myProject.eventPlatform.entity.Connection;
 import com.myProject.eventPlatform.entity.User;
+import com.myProject.eventPlatform.filter.ConnectionFilter;
 import com.myProject.eventPlatform.service.ConnectionService;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +44,7 @@ public class ConnectionController {
         return connectionService.rejectConnection(connection);
     }
 
-    //Belirli bir kullanıcıya ait statusu false olanları getirir.
+    //Belirli bir kullanıcıya ait statusu false olanları getirir. istek atanları getir.
     @GetMapping("/by/receiver/statusFalse")
     public ResponseModel<List<ConnectionDto>> listConnectionWhenStatusFalse(@RequestBody Connection connection){
         return connectionService.listConnectionWhenStatusFalse(connection);
@@ -52,6 +53,12 @@ public class ConnectionController {
     @GetMapping("/by/user")
     public ResponseModel<List<ConnectionDto>> getUserConnection(@RequestParam Integer receiverId){
         return connectionService.getUserConnection(receiverId);
+    }
+
+    //Belirli bir kullanıcıya istek atanları filtreleme
+    @PostMapping("/by/receiver/withFilter")
+    public ResponseModel<List<ConnectionDto>> listConnectionWhenStatusFalseWithFilter(@RequestBody ConnectionFilter connectionFilter){
+        return connectionService.listConnectionWhenStatusFalseWithFilter(connectionFilter);
     }
 
 
