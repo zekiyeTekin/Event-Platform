@@ -87,9 +87,9 @@ public class ConnectionServiceImpl implements ConnectionService {
 
 
 
-    public ResponseModel<List<ConnectionDto>> listConnectionWhenStatusFalse(Connection connection){
+    public ResponseModel<List<ConnectionDto>> listConnectionWhenStatusFalse(Integer  receiverId){
 
-        List<Connection> receiverConnections = connectionRepository.findConnectionsByReceiver(connection.getReceiver());
+        List<Connection> receiverConnections = connectionRepository.findConnectionsByReceiver_Id(receiverId);
 
         List<Connection> statusFalseConnection = receiverConnections.stream()
                 .filter(receiverConnection -> receiverConnection.getStatus() != null && !receiverConnection.getStatus())

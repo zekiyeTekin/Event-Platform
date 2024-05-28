@@ -1,15 +1,15 @@
 package com.myProject.eventPlatform.controller;
 
-import com.myProject.eventPlatform.dto.UserDto;
 import com.myProject.eventPlatform.common.ResponseModel;
+import com.myProject.eventPlatform.dto.UserDto;
 import com.myProject.eventPlatform.service.UserService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("user")
+@CrossOrigin(origins = "*", maxAge=3600)
 public class UserController {
 
 

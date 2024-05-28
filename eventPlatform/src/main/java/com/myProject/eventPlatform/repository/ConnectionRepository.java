@@ -14,7 +14,7 @@ import java.util.List;
 public interface ConnectionRepository extends JpaRepository<Connection, Integer>, JpaSpecificationExecutor<Connection> {
 
 
-    List<Connection> findConnectionsByReceiver(User receiver);
+    List<Connection> findConnectionsByReceiver_Id(Integer receiver);
 
     @Query("SELECT c FROM Connection c WHERE (c.sender.id = :receiverId OR c.receiver.id = :receiverId) AND c.status = true")
     List<Connection> findConnectionsByReceiverId(@Param("receiverId") Integer receiverId);
