@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/connection")
+@CrossOrigin(origins = "*", maxAge=3600)
 public class ConnectionController {
 
     private final ConnectionService connectionService;
@@ -46,8 +47,8 @@ public class ConnectionController {
 
     //Belirli bir kullanıcıya ait statusu false olanları getirir. istek atanları getir.
     @GetMapping("/by/receiver/statusFalse")
-    public ResponseModel<List<ConnectionDto>> listConnectionWhenStatusFalse(@RequestBody Connection connection){
-        return connectionService.listConnectionWhenStatusFalse(connection);
+    public ResponseModel<List<ConnectionDto>> listConnectionWhenStatusFalse(@RequestParam  Integer receiverId){
+        return connectionService.listConnectionWhenStatusFalse(receiverId);
     }
 
     @GetMapping("/by/user")
