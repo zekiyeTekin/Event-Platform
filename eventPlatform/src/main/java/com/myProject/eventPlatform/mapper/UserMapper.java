@@ -3,6 +3,7 @@ package com.myProject.eventPlatform.mapper;
 import com.myProject.eventPlatform.dto.UserDto;
 import com.myProject.eventPlatform.dto.forCommentDto.UserDtoForComment;
 import com.myProject.eventPlatform.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,6 +12,9 @@ import java.util.List;
 
 @Component
 public class UserMapper {
+
+
+
 
     public UserDto toDto(User user){
 
@@ -45,6 +49,7 @@ public class UserMapper {
         user.setPhoneNumber(userDto.getPhoneNumber());
         user.setIsActive(userDto.getIsActive());
         user.setAge(userDto.getAge());
+        user.setRole(userDto.getRole());
         return user;
     }
 

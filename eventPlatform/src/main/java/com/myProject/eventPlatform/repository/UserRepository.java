@@ -7,11 +7,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> getUsersByIsActiveTrue();
+
+    Optional<User> findByMail(String mail);
 
 
 
