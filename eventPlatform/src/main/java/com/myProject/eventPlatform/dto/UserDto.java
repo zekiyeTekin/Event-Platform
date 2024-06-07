@@ -1,6 +1,7 @@
 package com.myProject.eventPlatform.dto;
 
 
+import com.myProject.eventPlatform.enumuration.role.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class UserDto {
     private String location;
     private String password;
     private Boolean isActive;
+    private RoleEnum role;
 
 
 

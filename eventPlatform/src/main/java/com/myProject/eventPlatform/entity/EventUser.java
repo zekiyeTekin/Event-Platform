@@ -1,6 +1,8 @@
 package com.myProject.eventPlatform.entity;
 
 
+import com.myProject.eventPlatform.enumuration.role.RoleEnum;
+import com.myProject.eventPlatform.enumuration.role.TypeEnum;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
@@ -14,9 +16,8 @@ public class EventUser {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id" , referencedColumnName = "id")
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private TypeEnum type;
 
     @ManyToOne //Bir etkinlikte birden fazla katılımcı olabilir
     @JoinColumn(name = "event_id", referencedColumnName = "id")
